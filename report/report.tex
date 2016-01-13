@@ -1,0 +1,44 @@
+\documentclass[a4paper,12pt,oneside]{report}
+
+\input{common/packages}
+\onehalfspacing
+\graphicspath{{images/}}
+\input{common/command_renews}
+\input{common/pagestyles}
+
+\lstset{
+	escapechar=@,
+	xleftmargin=.2\textwidth, xrightmargin=.2\textwidth,
+	frame=single
+}
+
+
+%Introduction (5 paragraphes: contexte, problème, objectif, solution, évaluation)
+%Travail technique
+%	But?
+%	Overview (Mockups, workflows)
+%	Algorithme
+%	Architecture et Design
+%	Implémentation (langage et librairies utilisés)
+%	Utilisation (screenshots, etc)
+%Evaluation
+%	Complexité
+%	Performance
+%	Facilité d'utilisation
+%	...
+%Discussion / Limitations
+%Conclusion
+
+
+\begin{document}
+\pagestyle{document}
+	\input{frontmatter/cover}
+	\input{common/blank_page}
+	\tableofcontents
+	\input{frontmatter/introduction}
+	\input{mainmatter/realisation}
+	\input{mainmatter/evaluation}
+	\input{backmatter/limitation}
+	\input{backmatter/conclusion}
+	\input{backmatter/references}
+\end{document}

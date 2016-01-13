@@ -27,6 +27,23 @@
 			<artifactId>commons-lang3</artifactId>
 			<version>3.4</version>
 		</dependency>
+		<dependency>
+			<groupId>commons-io</groupId>
+			<artifactId>commons-io</artifactId>
+			<version>2.4</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.smtlib</groupId>
+			<artifactId>smtlib</artifactId>
+			<version>0.9.7.1</version>
+		</dependency>
+
+		<dependency>
+			<groupId>fr.inria.lille.adam</groupId>
+			<artifactId>nopol</artifactId>
+			<version>0.0.3-SNAPSHOT</version>
+		</dependency>
 
 		<dependency>
 			<groupId>fr.inria.gforge.spoon</groupId>
@@ -63,4 +80,17 @@
 		</dependency>
 
 	</dependencies>
+
+	<repositories>
+		<repository>
+			<id>inria</id>
+			<url>http://maven-repo.gforge.inria.fr/releases</url>
+		</repository>
+		<repository>
+			<id>gforge.inria.fr-release</id>
+			<name>Maven Repository for Spoon Release</name>
+			<url>http://sachaproject.gforge.inria.fr/repositories/releases/</url>
+			<snapshots />
+		</repository>
+	</repositories>
 </project>

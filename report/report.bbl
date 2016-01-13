@@ -1,0 +1,19 @@
+\begin{thebibliography}{1}
+
+\bibitem{genprog}
+Forrest S Weimer~W Le~Goues~C, ThanhVu~Nguyen.
+\newblock Genprog: A generic method for automatic software repair.
+\newblock 2011.
+
+\bibitem{semfix}
+Abhik Roychoudhury Satish~Chandra Hoang Duong Thien~Nguyen, Dawei~Qi.
+\newblock Semfix: Program repair via semantic analysis.
+\newblock 2013.
+
+\bibitem{nopol}
+Daniel Le Berre Favio~DeMarco Martin~Monperrus, Jifeng~Xuan.
+\newblock Automatic repair of buggy if conditions and missing preconditions
+  with smt.
+\newblock 2014.
+
+\end{thebibliography}
