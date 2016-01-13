@@ -23,7 +23,7 @@ public class SyllablesTestTransformer extends AbstractProcessor<CtClass<?>> impl
       newStatements.add(getFactory().Code().createCodeSnippetStatement(
         "Srring input = " + statements.get(2).toString().substring(statements.get(2).toString().indexOf("\""),
           statements.get(2).toString().length() - 1).replace(' ', ',')));
-      newStatements.add(getFactory().Code().createCodeSnippetStatement("Assert.assertEquals(expected, mainClass.syllables(input))"));
+      newStatements.add(getFactory().Code().createCodeSnippetStatement("org.junit.Assert.assertEquals(expected, mainClass.syllables(input))"));
       method.getBody().setStatements(newStatements);
       System.out.println(method);
     }

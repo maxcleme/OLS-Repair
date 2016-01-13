@@ -22,7 +22,7 @@ public class MedianTestTransformer extends AbstractProcessor<CtClass<?>> impleme
       newStatements.add(getFactory().Code().createCodeSnippetStatement(
         "int[] input = {" + statements.get(2).toString().substring(statements.get(2).toString().indexOf("\""),
           statements.get(2).toString().length() - 1).replace(' ', ',').replace("\"", "") + "}"));
-      newStatements.add(getFactory().Code().createCodeSnippetStatement("Assert.assertEquals(expected, mainClass.median(input))"));
+      newStatements.add(getFactory().Code().createCodeSnippetStatement("org.junit.Assert.assertEquals(expected, mainClass.median(input))"));
       method.getBody().setStatements(newStatements);
       System.out.println(method);
     }

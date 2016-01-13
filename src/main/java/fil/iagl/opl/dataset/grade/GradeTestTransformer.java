@@ -22,7 +22,7 @@ public class GradeTestTransformer extends AbstractProcessor<CtClass<?>> implemen
       newStatements.add(getFactory().Code().createCodeSnippetStatement(
         "int[] input = {" + statements.get(2).toString().substring(statements.get(2).toString().indexOf("\""),
           statements.get(2).toString().length() - 1).replace(' ', ',').replace("\"", "") + "}"));
-      newStatements.add(getFactory().Code().createCodeSnippetStatement("Assert.assertEquals(expected, mainClass.grade(input))"));
+      newStatements.add(getFactory().Code().createCodeSnippetStatement("org.junit.Assert.assertEquals(expected, mainClass.grade(input))"));
       method.getBody().setStatements(newStatements);
       System.out.println(method);
     }

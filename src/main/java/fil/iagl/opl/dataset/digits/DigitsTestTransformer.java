@@ -23,7 +23,7 @@ public class DigitsTestTransformer extends AbstractProcessor<CtClass<?>> impleme
       newStatements.add(getFactory().Code().createCodeSnippetStatement(
         "String input = " + statements.get(2).toString().substring(statements.get(2).toString().indexOf("\""),
           statements.get(2).toString().length() - 1)));
-      newStatements.add(getFactory().Code().createCodeSnippetStatement("Assert.assertEquals(expected, mainClass.digits(input))"));
+      newStatements.add(getFactory().Code().createCodeSnippetStatement("org.junit.Assert.assertEquals(expected, mainClass.digits(input))"));
       method.getBody().setStatements(newStatements);
       System.out.println(method);
     }

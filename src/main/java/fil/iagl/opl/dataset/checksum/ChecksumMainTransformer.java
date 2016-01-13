@@ -1,5 +1,6 @@
 package fil.iagl.opl.dataset.checksum;
 
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -39,7 +40,7 @@ public class ChecksumMainTransformer extends AbstractProcessor<CtClass<?>> imple
     List<CtStatement> newMethodStatements = method.getBody().getStatements().stream().filter(statement -> !statement.toString().contains("output")).collect(Collectors.toList());
     newMethodStatements.add(0, getFactory().Code().createCodeSnippetStatement("int idx = 0"));
     newMethodStatements.remove(newMethodStatements.size() - 1); // remove : if ( true ) return
-    newMethodStatements.add(getFactory().Code().createCodeSnippetStatement("return " + outputStatements.get(outputStatements.size() - 1).toString()
+    newMethodStatements.add(getFactory().Code().createCodeSnippetStatement("return (char)" + outputStatements.get(outputStatements.size() - 1).toString()
       .substring(outputStatements.get(outputStatements.size() - 1).toString().indexOf(",") + 1, outputStatements.get(outputStatements.size() - 1).toString().length() - 1)));
     newMethodStatements = newMethodStatements.stream().map(statement -> {
       if (statement.toString().contains("scanner.findInLine(\".\").charAt(0)")) {
