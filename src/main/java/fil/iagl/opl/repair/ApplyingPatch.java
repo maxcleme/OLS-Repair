@@ -1,14 +1,14 @@
 package fil.iagl.opl.repair;
 
-import fil.iagl.opl.instrument.InputCollector;
-import fil.iagl.opl.solver.SMT_Solver;
+import fil.iagl.opl.SMT_Solver;
+import fil.iagl.opl.model.Model;
 import spoon.processing.AbstractProcessor;
 import spoon.reflect.declaration.CtExecutable;
 
 public class ApplyingPatch extends AbstractProcessor<CtExecutable<?>> {
   @Override
   public boolean isToBeProcessed(CtExecutable<?> candidate) {
-    return candidate.equals(InputCollector.getFailingMethods().stream().findAny().get());
+    return candidate.equals(Model.getFailingMethods().stream().findAny().get());
   }
 
   @Override

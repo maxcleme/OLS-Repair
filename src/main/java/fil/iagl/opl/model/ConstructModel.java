@@ -1,11 +1,11 @@
-package fil.iagl.opl.instrument;
+package fil.iagl.opl.model;
 
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import fil.iagl.opl.SMT_Solver;
 import fil.iagl.opl.finder.FinderFactory;
-import fil.iagl.opl.solver.SMT_Solver;
 import fr.inria.lille.commons.synthesis.CodeGenesis;
 import fr.inria.lille.commons.synthesis.ConstraintBasedSynthesis;
 import fr.inria.lille.commons.trace.Specification;
@@ -36,8 +36,8 @@ public class ConstructModel extends AbstractProcessor<CtMethod<?>> {
           System.out.println("Cannot find faulty position from this assert");
           System.exit(0);
         } else {
-          InputCollector.addFailingMethods(position.getExecutable().getDeclaration());
-          if (InputCollector.getFailingMethods().size() > 1) {
+          Model.addFailingMethods(position.getExecutable().getDeclaration());
+          if (Model.getFailingMethods().size() > 1) {
             System.out.println("Cannot synthesis patch for multiple position");
             System.exit(0);
           }
@@ -69,11 +69,11 @@ public class ConstructModel extends AbstractProcessor<CtMethod<?>> {
           if (invocation.getArguments().get(nbArgs - 2) instanceof CtVariableAccess) {
             CtVariableAccess<?> expect = (CtVariableAccess<?>) invocation.getArguments().get(nbArgs - 2);
             if (expect.getVariable().getType().equals(getFactory().Type().CHARACTER_PRIMITIVE)) {
-              InputCollector
+              Model
                 .addSpecification(
                   new Specification<Integer>(testCollect, (int) expect.getVariable().getDeclaration().getDefaultExpression().toString().replace("'", "").charAt(0)));
             } else if (expect.getVariable().getType().equals(getFactory().Type().INTEGER_PRIMITIVE)) {
-              InputCollector
+              Model
                 .addSpecification(
                   new Specification<Integer>(testCollect, Integer.parseInt(expect.getVariable().getDeclaration().getDefaultExpression().toString())));
             } else {
@@ -89,13 +89,13 @@ public class ConstructModel extends AbstractProcessor<CtMethod<?>> {
   @Override
   public void processingDone() {
     Map<String, Integer> intConstants = new HashMap<>();
-    intConstants.put("-1", -1);
-    intConstants.put("0", 0);
-    intConstants.put("1", 1);
+    for (int constant : SMT_Solver.constantsArray) {
+      intConstants.put("" + constant, constant);
+    }
 
     ConstraintBasedSynthesis synthesis = new ConstraintBasedSynthesis(intConstants);
     CodeGenesis genesis = synthesis.codesSynthesisedFrom(
-      (Integer.class), InputCollector.getSpecs());
+      (Integer.class), Model.getSpecs());
     SMT_Solver.patch = genesis;
 
   }

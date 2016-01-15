@@ -1,4 +1,4 @@
-package fil.iagl.opl.instrument;
+package fil.iagl.opl.model;
 
 import java.util.ArrayList;
 import java.util.HashSet;
@@ -8,13 +8,13 @@ import java.util.Set;
 import fr.inria.lille.commons.trace.Specification;
 import spoon.reflect.declaration.CtExecutable;
 
-public class InputCollector {
+public class Model {
 
   private static final List<Specification<Integer>> specs = new ArrayList<>();
 
   private static final Set<CtExecutable<?>> failingMethods = new HashSet<>();
 
-  private InputCollector() {
+  private Model() {
   }
 
   public static void addFailingMethods(CtExecutable<?> ctMethod) {

@@ -8,8 +8,7 @@ import spoon.reflect.code.CtExpression;
 public class FinderFactory {
 
   private static final Collection<Finder> finders = Arrays.asList(
-    new DirectPositionFinder(),
-    new UndirectPositionFinder());
+    new DirectPositionFinder());
 
   private FinderFactory() {
   }
