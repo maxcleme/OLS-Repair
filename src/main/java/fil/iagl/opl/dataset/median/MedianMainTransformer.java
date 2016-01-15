@@ -30,7 +30,6 @@ public class MedianMainTransformer extends AbstractProcessor<CtClass<?>> impleme
         modifyMain(method);
       }
     }
-    System.out.println(clazz);
   }
 
   private void modifyMain(CtMethod<?> method) {
@@ -79,23 +78,16 @@ public class MedianMainTransformer extends AbstractProcessor<CtClass<?>> impleme
     CtParameter<Integer[]> param = getFactory().Core().createParameter();
     param.setType(getFactory().Type().createArrayReference(getFactory().Type().INTEGER_PRIMITIVE));
     param.setSimpleName("param");
-    CtMethod<Integer> gradeMethod = getFactory().Method().create(target, Sets.newHashSet(ModifierKind.PUBLIC), getFactory().Type().INTEGER_PRIMITIVE, "median",
+    CtMethod<Integer> medianMethod = getFactory().Method().create(target, Sets.newHashSet(ModifierKind.PUBLIC), getFactory().Type().INTEGER_PRIMITIVE, "median",
       Arrays.asList(param), Sets.newHashSet());
     CtBlock<Integer> body = getFactory().Core().createBlock();
     body.setStatements(newMethodStatements);
-    gradeMethod.setBody(body);
+    medianMethod.setBody(body);
   }
 
   @Override
   public boolean match(String fileName) {
     return fileName.contains("median");
-  }
-
-  public static void main(String[] args) {
-    AtomicInteger i = new AtomicInteger(0);
-    Arrays.asList("a = scanner.nextInt()", "b = scanner.nextInt()", "c = scanner.nextInt()").stream().map(t -> {
-      return t.replace("scanner.nextInt()", "param[" + i.getAndIncrement() + "]");
-    }).forEach(System.out::println);
   }
 
 }

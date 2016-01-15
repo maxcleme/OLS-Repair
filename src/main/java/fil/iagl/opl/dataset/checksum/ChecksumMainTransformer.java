@@ -1,6 +1,5 @@
 package fil.iagl.opl.dataset.checksum;
 
-
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -27,7 +26,6 @@ public class ChecksumMainTransformer extends AbstractProcessor<CtClass<?>> imple
         modifyMain(method);
       }
     }
-    System.out.println(clazz);
   }
 
   private void modifyMain(CtMethod<?> method) {
@@ -47,6 +45,14 @@ public class ChecksumMainTransformer extends AbstractProcessor<CtClass<?>> imple
         return getFactory().Code().createCodeSnippetStatement(
           statement.toString().replace("scanner.findInLine(\".\").charAt(0)", "input.charAt(idx++)").replace("NullPointerException", "IndexOutOfBoundsException"));
       }
+      if (statement.toString().contains("scanner.next()")) {
+        return getFactory().Code().createCodeSnippetStatement(
+          statement.toString().replace("scanner.next()", "new Scanner(input).next()"));
+      }
+      if (statement.toString().contains("scanner.nextLine()")) {
+        return getFactory().Code().createCodeSnippetStatement(
+          statement.toString().replace("scanner.nextLine()", "new Scanner(input).nextLine()"));
+      }
       return statement;
     }).collect(Collectors.toList());
     createMethod(newMethodStatements, target);
@@ -54,7 +60,7 @@ public class ChecksumMainTransformer extends AbstractProcessor<CtClass<?>> imple
     List<CtStatement> newExecStatements = new ArrayList<>();
     newExecStatements.add(getFactory().Code().createCodeSnippetStatement("String input"));
     newExecStatements.add(getFactory().Code().createCodeSnippetStatement("System.out.println(\"Enter an abitrarily long string, ending with carriage return > \")"));
-    newExecStatements.add(getFactory().Code().createCodeSnippetStatement("input = scanner.nextLine()"));
+    newExecStatements.add(getFactory().Code().createCodeSnippetStatement("input = scanner.next()"));
     newExecStatements.add(getFactory().Code().createCodeSnippetStatement("System.out.println(\"Check sum is \" + checksum(input))"));
     method.getBody().setStatements(newExecStatements);
   }

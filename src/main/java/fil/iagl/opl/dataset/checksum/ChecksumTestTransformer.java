@@ -29,7 +29,6 @@ public class ChecksumTestTransformer extends AbstractProcessor<CtClass<?>> imple
       newStatements.add(getFactory().Code().createCodeSnippetStatement("org.junit.Assert.assertEquals(expected, mainClass.checksum(input))"));
       method.getBody().setStatements(newStatements);
     }
-    System.out.println(clazz);
   }
 
   @Override

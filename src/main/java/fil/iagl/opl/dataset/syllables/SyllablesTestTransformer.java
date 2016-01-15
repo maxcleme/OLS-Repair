@@ -21,11 +21,10 @@ public class SyllablesTestTransformer extends AbstractProcessor<CtClass<?>> impl
         "int expected = " + statements.get(1).toString().substring(statements.get(1).toString().indexOf(".") - 1,
           statements.get(1).toString().indexOf("."))));
       newStatements.add(getFactory().Code().createCodeSnippetStatement(
-        "Srring input = " + statements.get(2).toString().substring(statements.get(2).toString().indexOf("\""),
+        "String input = " + statements.get(2).toString().substring(statements.get(2).toString().indexOf("\""),
           statements.get(2).toString().length() - 1).replace(' ', ',')));
       newStatements.add(getFactory().Code().createCodeSnippetStatement("org.junit.Assert.assertEquals(expected, mainClass.syllables(input))"));
       method.getBody().setStatements(newStatements);
-      System.out.println(method);
     }
   }
 

@@ -2,6 +2,7 @@ package fil.iagl.opl.repair;
 
 import java.io.File;
 import java.io.IOException;
+import java.io.PrintStream;
 import java.util.Arrays;
 
 import javax.xml.parsers.ParserConfigurationException;
@@ -21,6 +22,8 @@ public class App {
   private static final String GITHUB_PROJECTS_PATH = "C:/workspace/Solutions";
 
   public static void main(final String[] args) throws IOException, SAXException, ParserConfigurationException {
+
+    System.setOut(new PrintStream((new File("test_t_out.log"))));
 
     final File introClassfile = new File(App.INTROCLASS_DATASET_DIRECTORY_PATH);
     final File introClassfilePatched = new File(App.INTROCLASS_DATASET_DIRECTORY_PATH + "_patched");

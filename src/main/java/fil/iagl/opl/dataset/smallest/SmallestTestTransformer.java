@@ -25,7 +25,6 @@ public class SmallestTestTransformer extends AbstractProcessor<CtClass<?>> imple
           statements.get(2).toString().length() - 1).replace(' ', ',').replace("\"", "") + "}"));
       newStatements.add(getFactory().Code().createCodeSnippetStatement("org.junit.Assert.assertEquals(expected, mainClass.smallest(input))"));
       method.getBody().setStatements(newStatements);
-      System.out.println(method);
     }
   }
 

@@ -42,6 +42,7 @@ public class DatasetTransformer {
     System.out.println("Creating temporary folder...");
     FileUtils.copyDirectory(introClassfile, introClassfileTransformed);
 
+    System.out.println("Transforming dataset...");
     Arrays.stream(new File(introClassfileTransformed.getAbsolutePath() + File.separatorChar + "dataset").listFiles()).filter(file -> file.isDirectory()).forEach(file -> {
       Arrays.stream(file.listFiles()).filter(subDir -> subDir.isDirectory()).forEach(subDir -> {
         DatasetTransformer.transform(subDir);

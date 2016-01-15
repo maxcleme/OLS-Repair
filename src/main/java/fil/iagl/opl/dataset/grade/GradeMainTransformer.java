@@ -30,7 +30,6 @@ public class GradeMainTransformer extends AbstractProcessor<CtClass<?>> implemen
         modifyMain(method);
       }
     }
-    System.out.println(clazz);
   }
 
   private void modifyMain(CtMethod<?> method) {

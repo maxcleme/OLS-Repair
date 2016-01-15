@@ -132,7 +132,7 @@ public class Fixer {
     return allPassed;
   }
 
-  private static void cleanFolder(File sourceFolder) {
+  public static void cleanFolder(File sourceFolder) {
     Collection<File> filesToBeDeleted = FileUtils.listFiles(sourceFolder, new String[] {"class"}, true);
     filesToBeDeleted.addAll(FileUtils.listFiles(sourceFolder, new RegexFileFilter("[a-z]*.java"), TrueFileFilter.INSTANCE));
     filesToBeDeleted.forEach(classFile -> {
@@ -156,7 +156,7 @@ public class Fixer {
     final float totalSucceedForThisClass = totalTestForThisClass - r.getFailureCount();
     final float successRate = totalSucceedForThisClass / totalTestForThisClass;
 
-    System.out.printf("%s %.2f\n", sourceFile.getAbsoluteFile(), successRate * 100);
+    System.out.printf("%s %.2f\n", sourceFile.getAbsolutePath().substring(sourceFile.getAbsolutePath().lastIndexOf(File.separatorChar + "introclassJava")), successRate * 100);
     return successRate == 1;
   }
 }

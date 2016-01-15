@@ -2,15 +2,18 @@ package fil.iagl.opl.dataset.digits;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
 import com.google.common.collect.Sets;
 
 import fil.iagl.opl.dataset.Transformer;
+import spoon.Launcher;
 import spoon.processing.AbstractProcessor;
 import spoon.reflect.code.CtBlock;
 import spoon.reflect.code.CtIf;
+import spoon.reflect.code.CtInvocation;
 import spoon.reflect.code.CtStatement;
 import spoon.reflect.declaration.CtClass;
 import spoon.reflect.declaration.CtMethod;
@@ -40,13 +43,19 @@ public class DigitsMainTransformer extends AbstractProcessor<CtClass<?>> impleme
   private void modifyExecAndCreate(CtMethod<?> method, CtClass<?> target) {
     List<CtStatement> outputStatements = method.getBody().getStatements().stream().filter(statement -> statement.toString().contains("output")).collect(Collectors.toList());
     List<CtStatement> newMethodStatements = new ArrayList<>(method.getBody().getStatements());
-    removeFirstOutput(newMethodStatements);
+    removeFirstAndLastOutput(newMethodStatements);
     newMethodStatements = newMethodStatements.stream().map(statement -> {
       statement.getElements(new TypeFilter<>(CtIf.class)).stream().filter(ctif -> ctif.getCondition().toString().contains("true")).forEach(ctif -> {
-        ctif.replace(getFactory().Code().createCodeSnippetStatement("return output"));
+        ctif.replace(getFactory().Code().createCodeSnippetStatement("return output.replace(\" \", \"\").replace(\"\\n\", \"\")"));
+        System.out.println(ctif);
+      });
+      statement.getElements(new TypeFilter<>(CtInvocation.class)).stream().filter(invoc -> invoc.toString().contains("String.format") && invoc.getArguments().size() > 1)
+        .forEach(invoc -> {
+        invoc.replace(getFactory().Code().createCodeSnippetStatement("new String(\"\")"));
+        System.out.println(invoc);
       });
       if (statement instanceof CtIf && ((CtIf) (statement)).getCondition().toString().contains("true")) {
-        return getFactory().Code().createCodeSnippetStatement("return output");
+        return getFactory().Code().createCodeSnippetStatement("return output.replace(\" \", \"\").replace(\"\\n\", \"\")");
       }
       return statement;
     }).collect(Collectors.toList()); // replace : if ( true ) return by return output
@@ -60,6 +69,10 @@ public class DigitsMainTransformer extends AbstractProcessor<CtClass<?>> impleme
         return getFactory().Code().createCodeSnippetStatement(
           statement.toString().replace("scanner.nextInt()", "Integer.parseInt(param)"));
       }
+      if (statement.toString().contains("scanner.nextLong()")) {
+        return getFactory().Code().createCodeSnippetStatement(
+          statement.toString().replace("scanner.nextLong()", "Long.parseLong(param)"));
+      }
       return statement;
     }).collect(Collectors.toList());
     createMethod(newMethodStatements, target);
@@ -72,9 +85,12 @@ public class DigitsMainTransformer extends AbstractProcessor<CtClass<?>> impleme
     method.getBody().setStatements(newExecStatements);
   }
 
-  private void removeFirstOutput(List<CtStatement> newMethodStatements) {
+  private void removeFirstAndLastOutput(List<CtStatement> newMethodStatements) {
     ArrayList<CtStatement> toBeDelete = new ArrayList<CtStatement>();
-    toBeDelete.add(newMethodStatements.stream().filter(statement -> statement.toString().contains("output")).findFirst().orElse(null));
+    ArrayList<CtStatement> copy = new ArrayList<>(newMethodStatements);
+    toBeDelete.add(copy.stream().filter(statement -> statement.toString().contains("output")).findFirst().orElse(null));
+    Collections.reverse(copy);
+    toBeDelete.add(copy.stream().filter(statement -> statement.toString().contains("output")).findFirst().orElse(null));
     newMethodStatements.removeAll(toBeDelete);
   }
 
@@ -92,6 +108,19 @@ public class DigitsMainTransformer extends AbstractProcessor<CtClass<?>> impleme
   @Override
   public boolean match(String fileName) {
     return fileName.contains("digits");
+  }
+
+  public static void main(String[] args) throws Exception {
+    String[] spoonArgsTransformMain = {
+      "-i",
+      "C:/workspace/IntroClassJava/dataset/digits/1b31fa5c50f7725ce468ebf24282f2d080a83aed87e4ee35522ae7710c8e0136bc263cc460b8ec7bf2c3519cb59af4a138e114d36541515b2609ab56ad2b8ee9/004",
+      "-p",
+      "fil.iagl.opl.dataset.digits.DigitsMainTransformer",
+      "--with-imports",
+      "-x"
+    };
+
+    Launcher.main(spoonArgsTransformMain);
   }
 
 }
