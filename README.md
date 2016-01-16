@@ -1,3 +1,7 @@
+<p align="center"><img width="33%" src="https://github.com/maxcleme/OLS-Repair/blob/master/report/images/OLS-logo.png" /></p>
+
+#OLS-Repair
+
 La réparation automatique de bugs est un domaine en pleine expansion. En effet, le nombre
 de programme évolue de plus en plus chaques jours et par corrélation le nombre de bugs
 également. Il est envisageable dans les prochaines années que les développeurs ne soit pas assez
