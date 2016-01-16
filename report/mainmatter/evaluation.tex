@@ -7,4 +7,77 @@
 \chapter{Évaluation}
 	\thispagestyle{document}
 
-????????????????????
+\section{IntroclassJava}
+
+Le dataset IntroclassJava\footnote{\url{https://github.com/Spirals-Team/IntroClassJava}} est un ensemble de programmes java buggés d'étudiants de L1 de l'Université de Californie. Ce dataset est une transformation de Introclass\footnote{\url{http://dijkstra.cs.virginia.edu/genprog/resources/autorepairbenchmarks//IntroClass/}}, codé en C. Chaque programme vient avec un moins un test qui ne passe pas. L'évaluation de OLS-Repair a été effectué uniquement sur les projets \textit{median} et \textit{smallest}.
+
+\subsection{Transformation}
+
+Dans le but de respecter le scope définie en \ref{sec:scope}, des transformations synthaxiques ont été réalisé sur le dataset. Ces transformations ne changent en rien les spécifications du programme, elles permettent cependant à OLS-Repair d'effectuer la phase de collecte correctement et de rendre le code plus réaliste. Les figures \ref{fig:dataset_avant_transfo} et  \ref{fig:dataset_apres_transfo} montre la transformation apportée. Les projets \textit{median} et \textit{smallest} transformés sont disponible sur GitHub de OLS-Repair\footnote{\url{https://github.com/maxcleme/OLS-Repair}}.
+
+
+
+\begin{figure}
+\begin{lstlisting}
+public void test() throws Exception {
+     median mainClass = new median();
+     String expected =
+          "Please enter 3 numbers separated by spaces > " + 
+          "6 is the median";
+     mainClass.scanner = new java.util.Scanner("2 6 8");
+     mainClass.exec();
+     String out = mainClass.output.replace("\n", " ").trim ();
+     assertEquals(expected.replace(" ", ""), out.replace(" ", ""));
+}
+\end{lstlisting}
+\label{fig:dataset_avant_transfo}
+\caption{Exemple de test avant transformation}
+\end{figure}
+
+
+\begin{figure}
+\begin{lstlisting}
+public void test() throws Exception {
+     median mainClass = new median();
+     int expected =  6 ;
+     int[] input = {2,8,6};
+     Assert.assertEquals(expected, mainClass.median(input));
+}
+\end{lstlisting}
+\label{fig:dataset_apres_transfo}
+\caption{Exemple de tess après transformation}
+\end{figure}
+
+\subsection{Redondance}
+
+Comme expliqué en \ref{sec:principe}, les spécifications sont indépendantes du code présent dans la méthode contenant un bug. Si OLS-Repair peut réparer une version du dataset, alors toutes les autres versions ayant les mêmes spécifications seront réparables également.
+
+\section{Résultats}
+
+Les constantes ajoutées à $I$ lors de la génération du problème SMT ont un rôle important pour le solver. La table \ref{table:constantes} montre que les lignes synthétisées diffèrent en fonction de ces constantes. Pour réaliser cette évaluation, uniquement les spécifications de la classe dit \textit{Whitebox} ont été prise en compte.  
+
+\begin{table}[H]
+\centering
+\begin{tabular}{|l|c|c|c|c|}
+\hline
+\multicolumn{1}{|c|}{\multirow{2}{*}{Constante}} & \multicolumn{2}{c|}{Median} & \multicolumn{2}{c|}{Smallest} \\ \cline{2-5} 
+\multicolumn{1}{|c|}{}                           & Whitebox     & Blackbox     & Whitebox      & Blackbox      \\ \hline
+$\emptyset$                                           & 6/6          & 3/7          & 8/8           & 3/8           \\ \hline
+{[}0{]}                                          & 6/6          & 3/7          & 8/8           & 0/8           \\ \hline
+{[}-1 ; 1 {]}                                    & 6/6          & 4/7          & 8/8           & 3/8           \\ \hline
+{[}-1 ; 0 ; 1{]}                                 & 6/6          & 4/7          & 8/8           & 0/8           \\ \hline
+{[}2 ; 4 ; 8 ; 16 ; 32 ; 64{]}                   & 6/6          & 3/7          & 8/8           & 3/8           \\ \hline
+\end{tabular}
+\caption{Impactes des constantes sur la pertinence de la solution}
+\label{table:constantes}
+\end{table}
+
+\par Peut importe les constantes, les spécifications de \textit{Whitebox} sont toujours respectées car elles sont définie dans le problème SMT. Par contre, les spécifications de  \textit{Blackbox} ne sont pas toujours respectées pour cause que la ligne synthétisé n'est pas assez générique. En effet, la présence de constante tel que 0 peu mener le solver vers une solution triviale, comme pour \textit{Smallest} où toutes les sorties $O$ de \textit{Whitebox} sont égales à 0.
+
+\newpage
+En généralisant sur l'ensemble du dataset IntroclassJava original, OLS-Repair peut réparer les 48 versions défaillantes de \textit{median} ainsi que les 45 versions défaillantes de \textit{smallest} car les tests sont identiques pour chaque versions. Seulement, uniquement les spécifications \textit{Whitebox} sont respectées. Comme expliqué en \ref{table:constantes}, il est possible que la ligne synthétisée respecte certaine spécification \textit{Blackbox}, cependant elles sont ne sont jamais respectées dans l'intégralité. Cependant, si l'on regarde uniquement les spécifications prise en compte, OLS-Repair répare 100\% des projets considérés.
+
+
+
+
+

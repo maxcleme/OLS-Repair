@@ -4,7 +4,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import fil.iagl.opl.SMT_Solver;
+import fil.iagl.opl.OLS_Repair;
 import fil.iagl.opl.finder.FinderFactory;
 import fr.inria.lille.commons.synthesis.CodeGenesis;
 import fr.inria.lille.commons.synthesis.ConstraintBasedSynthesis;
@@ -22,7 +22,7 @@ public class ConstructModel extends AbstractProcessor<CtMethod<?>> {
   @Override
   public boolean isToBeProcessed(CtMethod<?> candidate) {
     return candidate.getAnnotation(org.junit.Test.class) != null && candidate.getParent(CtClass.class) != null
-      && (SMT_Solver.useBlackBox || !candidate.getParent(CtClass.class).getSimpleName().contains("Blackbox"));
+      && (OLS_Repair.USE_BLACK_BOX || !candidate.getParent(CtClass.class).getSimpleName().contains("Blackbox"));
   }
 
   @Override
@@ -89,14 +89,14 @@ public class ConstructModel extends AbstractProcessor<CtMethod<?>> {
   @Override
   public void processingDone() {
     Map<String, Integer> intConstants = new HashMap<>();
-    for (int constant : SMT_Solver.constantsArray) {
+    for (int constant : OLS_Repair.CONSTANTS_ARRAY) {
       intConstants.put("" + constant, constant);
     }
 
     ConstraintBasedSynthesis synthesis = new ConstraintBasedSynthesis(intConstants);
     CodeGenesis genesis = synthesis.codesSynthesisedFrom(
       (Integer.class), Model.getSpecs());
-    SMT_Solver.patch = genesis;
+    OLS_Repair.patch = genesis;
 
   }
 

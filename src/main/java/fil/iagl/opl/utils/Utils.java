@@ -14,14 +14,12 @@ import javax.tools.ToolProvider;
 import javax.xml.parsers.ParserConfigurationException;
 
 import org.apache.commons.io.FileUtils;
-import org.apache.commons.io.filefilter.RegexFileFilter;
-import org.apache.commons.io.filefilter.TrueFileFilter;
 import org.apache.commons.lang3.StringUtils;
 import org.junit.runner.JUnitCore;
 import org.junit.runner.Result;
 import org.xml.sax.SAXException;
 
-import fil.iagl.opl.SMT_Solver;
+import fil.iagl.opl.OLS_Repair;
 
 public class Utils {
 
@@ -41,7 +39,7 @@ public class Utils {
     final JavaCompiler compiler = ToolProvider.getSystemJavaCompiler();
 
     compiler.run(null, null, null, "-source", "8", "-cp",
-      SMT_Solver.JUNIT_JAR_PATH
+      OLS_Repair.JUNIT_JAR_PATH
         + File.pathSeparatorChar
         + Arrays.stream(classpaths).collect(Collectors.joining(File.pathSeparator)),
       sourceFile.getPath());
@@ -87,7 +85,6 @@ public class Utils {
 
   public static void cleanFolder(File sourceFolder) {
     Collection<File> filesToBeDeleted = FileUtils.listFiles(sourceFolder, new String[] {"class"}, true);
-    filesToBeDeleted.addAll(FileUtils.listFiles(sourceFolder, new RegexFileFilter("[a-z]*.java"), TrueFileFilter.INSTANCE));
     filesToBeDeleted.forEach(classFile -> {
       classFile.delete();
     });
@@ -109,7 +106,9 @@ public class Utils {
     final float totalSucceedForThisClass = totalTestForThisClass - r.getFailureCount();
     final float successRate = totalSucceedForThisClass / totalTestForThisClass;
 
-    System.out.printf("%s %.2f\n", sourceFile.getAbsolutePath().substring(sourceFile.getAbsolutePath().lastIndexOf(File.separatorChar + "introclassJava")), successRate * 100);
+    System.out.printf("%s %.2f\t%d/%d \n",
+      sourceFile.getAbsolutePath().substring(sourceFile.getAbsolutePath().lastIndexOf(File.separatorChar + "introclassJava")),
+      successRate * 100, (int) totalSucceedForThisClass, (int) totalTestForThisClass);
     return successRate == 1;
   }
 }
