@@ -12,7 +12,7 @@
 	
 \section{Principe}
 \label{sec:principe}
-\par Le principe est d'utiliser les suites de tests d'un projet comme spécifications de celui-ci. Ces spécifications contiennent deux types de valeurs très importante. Premièrement les variables accessibles lors d'un comportement exécuté par l'application : les entrées. Ensuite la valeur attendu de ce comportement : la sortie. De ce fait, OLS-Repair ne dépend pas du type de bug car il considère la méthode défaillante comme une boite noir. À la manière de Nopol\cite{nopol}, il suffit trouver une relation entre les entrées et la sortie à l'aide de solver SMT. Cette relation représentera le comportement nominal de l'application et remplacera la boite noir. Les tests sont ensuite utilisé comme spécifications exécutables pour valider la solution synthétisée.
+\par Le principe est d'utiliser les suites de tests d'un projet comme spécifications de celui-ci. Ces spécifications contiennent deux types de valeurs très importantes. Premièrement les variables accessibles lors d'un comportement exécuté par l'application : les entrées. Ensuite la valeur attendue de ce comportement : la sortie. De ce fait, OLS-Repair ne dépend pas du type de bug car il considère la méthode défaillante comme une boîte noire. À la manière de Nopol\cite{nopol}, il de suffit trouver une relation entre les entrées et les sorties à l'aide de solver SMT. Cette relation représentera le comportement nominal de l'application et remplacera la boîte noire. Les tests sont ensuite utilisés comme spécifications exécutables pour valider la solution synthétisée.
 
 
 \section{Overview}
@@ -25,13 +25,13 @@
 
 \subsection{Collecte}
 \label{subsec:collecte}
-\par La phase de collecte de données a pour objectif d'obtenir les entrées et la sortie pour chaque tests. Ces entrées / sorties sont vues comment des spécification, elles sont définies de la manière suivante : $S_{i}(I,O)$, où $I$ représente l'ensemble des entrées pour le test $i$, et $O$ la valeur attendu par le test $i$. 
+\par La phase de collecte de données a pour objectif d'obtenir les entrées et la sortie pour chaque tests. Ces entrées / sorties sont vues comment des spécification, elles sont définies de la manière suivante : $S_{i}(I,O)$, où $I$ représente l'ensemble des entrées pour le test $i$, et $O$ la sortie pour le test $i$. 
 
 \subsection{Génération}
-\par La phase de génération transforme l'ensemble des spécifications collectées en \ref{subsec:collecte} en un problème SMT en utilisant les mêmes algorithmes que ceux définie dans Nopol\cite{nopol}. Ces algorithmes ajoute également des constantes à $I$, valeurs souvent utilisées dans des expressions mathématiques, tel que $-1$, $0$ et $1$. 
+\par La phase de génération transforme l'ensemble des spécifications collectées en \ref{subsec:collecte} en un problème SMT en utilisant les mêmes algorithmes que ceux définis dans Nopol\cite{nopol}. Ces algorithmes ajoutent également des constantes à $I$, valeurs souvent utilisées dans des expressions mathématiques, tel que $-1$, $0$ et $1$. 
 \subsection{Résolution et synthèse}
 \label{subsec:synthese}
-\par La phase de résolution est déléguée à un solver SMT. Ce dernier est appelé de manière itérative. Tous d'abord sur un problème avec un nombre d'opérateurs restreints. Ensuite, si le problème n'est pas décidables, alors de nouveaux opérateurs sont ajouté pour augmenter l'espace de recherche. Ces opérateurs sont définis dans la table \ref{table:operators}
+\par La phase de résolution est déléguée à un solver SMT. Ce dernier est appelé de manière itérative. Tous d'abord sur un problème avec un nombre d'opérateurs restreints. Ensuite, si le problème n'est pas \textit{décidable}, alors de nouveaux opérateurs sont ajoutés pour augmenter l'espace de recherche. Ces opérateurs sont définis dans la table \ref{table:operators}
 
 
 \begin{table}[H]
@@ -49,11 +49,11 @@
   \hline
 \end{tabular}
 
-\caption{Opérateurs encodés en fonction du nombre d'itération effectuées avec le solver SMT}
+\caption{Opérateurs encodés en fonction du nombre d'itérations effectuées avec le solver SMT}
 \label{table:operators}
 \end{table}
 
-\par Lorsque le problème est dit \textit{décidable}, une ligne de code est synthétisée par rapport à la solution proposé par le solver. Cette ligne remplacera ensuite le corps de la méthode contenant le bug.
+\par Lorsque le problème est dit \textit{décidable}, une ligne de code est synthétisée en fonction de la solution proposée par le solver. Cette ligne remplacera ensuite le corps de la méthode contenant le bug.
 
 \subsection{Validation de la synthèse}
 
@@ -77,7 +77,7 @@ La collecte des spécifications expliquées en \ref{subsec:collecte} est statiqu
 
 \subsection{Forme des tests}
 
-Afin de pouvoir collecter de manière statique les paramètres de méthodes, les tests doivent être écrit de la manières suivantes :
+Afin de pouvoir collecter de manière statique les paramètres de méthodes, les tests doivent être écrits de la manière présentée dans la figure \ref{fig:forme_collecte}.
 
 \begin{figure}[H]
 \begin{lstlisting}
@@ -90,6 +90,7 @@ public void test() throws Exception {
 }
 \end{lstlisting}
 \caption{Exemple de code permettant à OLS-Repair la collecte des spécifications}
+\label{fig:forme_collecte}
 \end{figure}
 
 
@@ -108,7 +109,7 @@ OLS-Repair se limite à différents types pour $I$ et $O$. La table \ref{table:I
   \hline
 \end{tabular}
 
-\caption{Opérateurs encodés en fonction du nombre d'itération effectuées avec le solver SMT}
+\caption{Opérateurs encodés en fonction du nombre d'itérations effectuées avec le solver SMT}
 \label{table:IO}
 \end{table}
 
@@ -116,8 +117,8 @@ OLS-Repair se limite à différents types pour $I$ et $O$. La table \ref{table:I
 \section{Implementation}
 \label{sec:implementation}
 
-\par OLS-Repair est implementé en Java. Pour analyser les tests et collecter les entrées / sorties, cette approche utilise Spoon\footnote{\url{http://spoon.gforge.inria.fr/}}, une librairie d'analyse et de transformation de code source.
-\par La transformation des spécifications en problème SMT utilise les algorithmes déjà défini dans Nopol\cite{nopol}. Ces algorithmes utilise JSMTLIB\footnote{\url{https://github.com/smtlib/jSMTLIB}}, une API permettant la génération de script SMT-LIB\footnote{\url{http://smtlib.cs.uiowa.edu/}}. Ce langage est un standard compréhensible par différents solvers SMT.
+\par OLS-Repair est implementé en Java. Cette approche utilise Spoon\footnote{\url{http://spoon.gforge.inria.fr/}}, une librairie d'analyses et de transformations de codes sources pour instrumenter les tests, collecter les entrées / sorties et insérer un patch.
+\par La transformation des spécifications en problème SMT utilise les algorithmes déjà définis dans Nopol\cite{nopol}. Ces algorithmes utilisent JSMTLIB\footnote{\url{https://github.com/smtlib/jSMTLIB}}, une API permettant la génération de script SMT-LIB\footnote{\url{http://smtlib.cs.uiowa.edu/}}. Ce langage est un standard compréhensible par différents solvers SMT.
 \par Le solver utilisé est Z3\footnote{\url{https://z3.codeplex.com/}}, ce solver embarque les théories non-linéaires sur les réels, ce qui le démarque des autres. C'est grâce à Z3 que l'opérateur de multiplication mentionné en \ref{subsec:synthese} peut être utilisé.
 
 

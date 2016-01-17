@@ -1,6 +1,6 @@
 \chapter{Limitations}
 	\thispagestyle{limitation}
 	
-\par Le nombre de test est determinant car il représente la spécification du programme. Si pas assez, le patch peut être trivial et s'éloignera de la solution originale. Si trop de test, il est possible que le solver n'arrive pas a résoudre toutes ces contraintes.
+\par Le nombre de tests est determinant car il représente une spécification pour le programme à réparer. Si ils sont peu nombreux, le patch peut être trivial et s'éloignera du comportement nominal. À l'inverse, si ils sont trop nombreux, il est envisageable que le solver n'arrive pas a résoudre toutes les contraintes.
 
-\par L'identification de la méthode à réparer peut être difficile, si cette dernières n'est pas directement appelé dans l'assertion. De plus, le bug peut potentiellement provenir de plusieurs bugs dans différentes méthodes du codes.
+\par L'identification de la méthode à réparer peut être difficile, surtout si cette dernières n'est pas directement appelée dans l'assertion. De plus, le bug peut potentiellement provenir de plusieurs bugs dans différentes méthodes du code.

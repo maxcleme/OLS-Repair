@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.16 (MiKTeX 2.9) (preloaded format=pdflatex 2015.12.11)  16 JAN 2016 21:08
+This is pdfTeX, Version 3.14159265-2.6-1.40.16 (MiKTeX 2.9) (preloaded format=pdflatex 2015.12.11)  17 JAN 2016 15:03
 entering extended mode
 **report.tex
 (report.tex
@@ -1319,14 +1319,14 @@ Underfull \hbox (badness 10000) in paragraph at lines 3--5
 File: images/OLS-logo.png Graphic file (type png)
 
 <use images/OLS-logo.png>
-Package pdftex.def Info: images/OLS-logo.png used on input line 25.
+Package pdftex.def Info: images/OLS-logo.png used on input line 11.
 (pdftex.def)             Requested size: 165.61833pt x 127.22499pt.
-LaTeX Font Info:    Try loading font information for U+msa on input line 27.
+LaTeX Font Info:    Try loading font information for U+msa on input line 28.
 
 ("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\amsfonts\umsa.fd"
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
-LaTeX Font Info:    Try loading font information for U+msb on input line 27.
+LaTeX Font Info:    Try loading font information for U+msb on input line 28.
 
 ("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\amsfonts\umsb.fd"
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
@@ -1381,21 +1381,21 @@ LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <12> not available
 
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
-l.93 \end{figure}
+l.94 \end{figure}
                  ] [8pdfTeX warning (ext4): destination with the same identifie
 r (name{figure.1.2}) has been already used, duplicate ignored
 
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
-l.124 \section
-              {Utilisation}pdfTeX warning (ext4): destination with the same ide
-ntifier (name{table.1.2}) has been already used, duplicate ignored
+l.123 
+      pdfTeX warning (ext4): destination with the same identifier (name{table.1
+.2}) has been already used, duplicate ignored
 
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
-l.124 \section
-              {Utilisation}]
-Underfull \hbox (badness 10000) in paragraph at lines 126--128
+l.123 
+      ]
+Underfull \hbox (badness 10000) in paragraph at lines 127--129
 
  []
 
@@ -1434,7 +1434,7 @@ Chapitre 3.
 ]
 File: images/OLS-logo.png Graphic file (type png)
  <use images/OLS-logo.png>
-Package pdftex.def Info: images/OLS-logo.png used on input line 16.
+Package pdftex.def Info: images/OLS-logo.png used on input line 15.
 (pdftex.def)             Requested size: 165.61833pt x 127.22499pt.
 )
 (backmatter/references.tex (report.bbl [14
@@ -1452,15 +1452,18 @@ Package rerunfilecheck Info: File `report.out' has not changed.
 Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 43.
  ) 
 Here is how much of TeX's memory you used:
- 29253 strings out of 493673
- 559147 string characters out of 3141535
+ 29257 strings out of 493673
+ 559213 string characters out of 3141535
  637694 words of memory out of 3000000
- 32061 multiletter control sequences out of 15000+200000
+ 32064 multiletter control sequences out of 15000+200000
  17224 words of font info for 66 fonts, out of 3000000 for 9000
  1025 hyphenation exceptions out of 8191
  69i,12n,78p,10451b,1369s stack positions out of 5000i,500n,10000p,200000b,50000s
-pdfTeX warning (dest): name{Hfootnote.9} has been referenced but does not exi
-st, replaced by a fixed one
+pdfTeX warning (dest): name{Hfootnote.10} has been referenced but does not ex
+ist, replaced by a fixed one
+
+pdfTeX warning (dest): name{Hfootnote.9} has been referenced but does not exist
+, replaced by a fixed one
 
 pdfTeX warning (dest): name{Hfootnote.8} has been referenced but does not exist
 , replaced by a fixed one
@@ -1500,9 +1503,9 @@ KTeX 2.9/fonts/type1/public/amsfonts/cm/cmtt10.pfb><C:/Program Files (x86)/MiKT
 eX 2.9/fonts/type1/public/amsfonts/cm/cmtt12.pfb><C:/Program Files (x86)/MiKTeX
  2.9/fonts/type1/public/amsfonts/symbols/msam10.pfb><C:/Program Files (x86)/MiK
 TeX 2.9/fonts/type1/urw/zapfding/uzdr.pfb>
-Output written on report.pdf (15 pages, 300669 bytes).
+Output written on report.pdf (15 pages, 303311 bytes).
 PDF statistics:
- 375 PDF objects out of 1000 (max. 8388607)
- 84 named destinations out of 1000 (max. 500000)
+ 381 PDF objects out of 1000 (max. 8388607)
+ 85 named destinations out of 1000 (max. 500000)
  313 words of extra memory for PDF output out of 10000 (max. 10000000)
 
