@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.16 (MiKTeX 2.9) (preloaded format=pdflatex 2015.12.11)  17 JAN 2016 15:03
+This is pdfTeX, Version 3.14159265-2.6-1.40.16 (MiKTeX 2.9) (preloaded format=pdflatex 2015.12.11)  17 JAN 2016 18:50
 entering extended mode
 **report.tex
 (report.tex
@@ -1200,7 +1200,7 @@ Package: amsfonts 2013/01/14 v3.01 Basic AMSFonts support
 \symAMSb=\mathgroup5
 LaTeX Font Info:    Overwriting math alphabet `\mathfrak' in version `bold'
 (Font)                  U/euf/m/n --> U/euf/b/n on input line 106.
-)))
+))
 ("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\psnfss\pifont.sty"
 Package: pifont 2005/04/12 PSNFSS-v9.2a Pi font support (SPQR) 
 LaTeX Font Info:    Try loading font information for U+pzd on input line 63.
@@ -1212,6 +1212,27 @@ LaTeX Font Info:    Try loading font information for U+psy on input line 64.
 
 ("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\psnfss\upsy.fd"
 File: upsy.fd 2001/06/04 font definitions for U/psy.
+))
+("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\caption\caption.sty"
+Package: caption 2015/09/17 v3.3-111 Customizing captions (AR)
+
+("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\caption\caption3.sty"
+Package: caption3 2015/09/20 v1.7-115 caption3 kernel (AR)
+Package caption3 Info: TeX engine: e-TeX on input line 57.
+\captionmargin=\dimen212
+\captionmargin@=\dimen213
+\captionwidth=\dimen214
+\caption@tempdima=\dimen215
+\caption@indent=\dimen216
+\caption@parindent=\dimen217
+\caption@hangindent=\dimen218
+)
+\c@ContinuedFloat=\count180
+Package caption Info: float package is loaded.
+Package caption Info: hyperref package is loaded.
+Package caption Info: listings package is loaded.
+Package caption Info: rotating package is loaded.
+Package caption Info: wrapfig package is loaded.
 ))
 (common/command_renews.tex) (common/pagestyles.tex) (report.aux)
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 32.
@@ -1231,16 +1252,16 @@ LaTeX Font Info:    ... okay on input line 32.
 
 ("C:\Program Files (x86)\MiKTeX 2.9\tex\context\base\supp-pdf.mkii"
 [Loading MPS to PDF converter (version 2006.09.02).]
-\scratchcounter=\count180
-\scratchdimen=\dimen212
+\scratchcounter=\count181
+\scratchdimen=\dimen219
 \scratchbox=\box89
-\nofMPsegments=\count181
-\nofMParguments=\count182
+\nofMPsegments=\count182
+\nofMParguments=\count183
 \everyMPshowfont=\toks37
-\MPscratchCnt=\count183
-\MPscratchDim=\dimen213
-\MPnumerator=\count184
-\makeMPintoPDFobject=\count185
+\MPscratchCnt=\count184
+\MPscratchDim=\dimen220
+\MPnumerator=\count185
+\makeMPintoPDFobject=\count186
 \everyMPtoPDFconversion=\toks38
 )
 \AtBeginShipoutBox=\box90
@@ -1251,7 +1272,7 @@ Package: nameref 2012/10/27 v2.43 Cross-referencing by name of section
 ("C:\Program Files (x86)\MiKTeX 2.9\tex\generic\oberdiek\gettitlestring.sty"
 Package: gettitlestring 2010/12/03 v1.4 Cleanup title references (HO)
 )
-\c@section@level=\count186
+\c@section@level=\count187
 )
 LaTeX Info: Redefining \ref on input line 32.
 LaTeX Info: Redefining \pageref on input line 32.
@@ -1295,7 +1316,9 @@ LaTeX Info: Redefining \nameref on input line 32.
 * (1in=72.27pt=25.4mm, 1cm=28.453pt)
 
 ABD: EveryShipout initializing macros
-\c@lstlisting=\count187
+\c@lstlisting=\count188
+Package caption Info: Begin \AtBeginDocument code.
+Package caption Info: End \AtBeginDocument code.
  (frontmatter/cover.tex
 <images/logo_univ.jpg, id=122, 511.9125pt x 219.82124pt>
 File: images/logo_univ.jpg Graphic file (type jpg)
@@ -1362,45 +1385,37 @@ Package pdftex.def Info: images/workflowSMT.png used on input line 21.
 (pdftex.def)             Requested size: 412.03836pt x 275.52869pt.
  [5
 
-] [6pdfTeX warning (ext4): destination with the same identifier (name{figure.1.
-1}) has been already used, duplicate ignored
-
-\AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
-                                                  \fi \fi 
-l.35 
-      <./images/workflowSMT.png (PNG copy)>]
+] [6 <./images/workflowSMT.png (PNG copy)>]
+[7]
 LaTeX Font Info:    Try loading font information for OMS+cmr on input line 84.
-
-("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\base\omscmr.fd"
+ ("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\base\omscmr.fd"
 File: omscmr.fd 2014/09/29 v2.5h Standard LaTeX font definitions
 )
 LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <12> not available
 (Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 84.
- [7pdfTeX warning (ext4): destination with the same identifier (name{table.1.1}
-) has been already used, duplicate ignored
-
-\AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
-                                                  \fi \fi 
-l.94 \end{figure}
-                 ] [8pdfTeX warning (ext4): destination with the same identifie
-r (name{figure.1.2}) has been already used, duplicate ignored
-
-\AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
-                                                  \fi \fi 
-l.123 
-      pdfTeX warning (ext4): destination with the same identifier (name{table.1
-.2}) has been already used, duplicate ignored
-
-\AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
-                                                  \fi \fi 
-l.123 
-      ]
+ [8]
 Underfull \hbox (badness 10000) in paragraph at lines 127--129
 
  []
 
 ) (mainmatter/evaluation.tex [9]
 Chapitre 2.
+
+Package caption Warning: \label without proper \caption on input line 33.
+See the caption package documentation for explanation.
+
+
+LaTeX Warning: Reference `fig:dataset_avant_transfo' on page 10 undefined on in
+put line 16.
+
+
+Package caption Warning: \label without proper \caption on input line 47.
+See the caption package documentation for explanation.
+
+
+LaTeX Warning: Reference `fig:dataset_apres_transfo' on page 10 undefined on in
+put line 16.
+
 LaTeX Font Info:    Try loading font information for OML+cmr on input line 25.
 ("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\base\omlcmr.fd"
 File: omlcmr.fd 2014/09/29 v2.5h Standard LaTeX font definitions
@@ -1409,25 +1424,8 @@ LaTeX Font Info:    Font shape `OML/cmr/m/n' in size <12> not available
 (Font)              Font shape `OML/cmm/m/it' tried instead on input line 25.
  [10
 
-pdfTeX warning (ext4): destination with the same identifier (name{figure.2.1}) 
-has been already used, duplicate ignored
-
-\AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
-                                                  \fi \fi 
-l.54 
-     ] [11pdfTeX warning (ext4): destination with the same identifier (name{fig
-ure.2.2}) has been already used, duplicate ignored
-
-\AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
-                                                  \fi \fi 
-l.77 \newpage
-             pdfTeX warning (ext4): destination with the same identifier (name{
-table.2.1}) has been already used, duplicate ignored
-
-\AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
-                                                  \fi \fi 
-l.77 \newpage
-             ]) (backmatter/limitation.tex [12]
+] [11])
+(backmatter/limitation.tex [12]
 Chapitre 3.
 ) (backmatter/conclusion.tex [13
 
@@ -1448,17 +1446,21 @@ Package atveryend Info: Empty hook `AfterLastShipout' on input line 43.
 Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 43.
 Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 43.
 Package rerunfilecheck Info: File `report.out' has not changed.
-(rerunfilecheck)             Checksum: 5F133576B9B82139AFBD634D628D1765;1419.
+(rerunfilecheck)             Checksum: 92EF0DC1A892DCCD573BF77CDCB7471C;1421.
+
+
+LaTeX Warning: There were undefined references.
+
 Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 43.
  ) 
 Here is how much of TeX's memory you used:
- 29257 strings out of 493673
- 559213 string characters out of 3141535
- 637694 words of memory out of 3000000
- 32064 multiletter control sequences out of 15000+200000
+ 30255 strings out of 493673
+ 577728 string characters out of 3141535
+ 657457 words of memory out of 3000000
+ 33051 multiletter control sequences out of 15000+200000
  17224 words of font info for 66 fonts, out of 3000000 for 9000
  1025 hyphenation exceptions out of 8191
- 69i,12n,78p,10451b,1369s stack positions out of 5000i,500n,10000p,200000b,50000s
+ 69i,12n,78p,10451b,1397s stack positions out of 5000i,500n,10000p,200000b,50000s
 pdfTeX warning (dest): name{Hfootnote.10} has been referenced but does not ex
 ist, replaced by a fixed one
 
@@ -1503,9 +1505,9 @@ KTeX 2.9/fonts/type1/public/amsfonts/cm/cmtt10.pfb><C:/Program Files (x86)/MiKT
 eX 2.9/fonts/type1/public/amsfonts/cm/cmtt12.pfb><C:/Program Files (x86)/MiKTeX
  2.9/fonts/type1/public/amsfonts/symbols/msam10.pfb><C:/Program Files (x86)/MiK
 TeX 2.9/fonts/type1/urw/zapfding/uzdr.pfb>
-Output written on report.pdf (15 pages, 303311 bytes).
+Output written on report.pdf (15 pages, 305028 bytes).
 PDF statistics:
- 381 PDF objects out of 1000 (max. 8388607)
- 85 named destinations out of 1000 (max. 500000)
+ 387 PDF objects out of 1000 (max. 8388607)
+ 90 named destinations out of 1000 (max. 500000)
  313 words of extra memory for PDF output out of 10000 (max. 10000000)
 

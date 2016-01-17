@@ -72,12 +72,20 @@ $\emptyset$                                           & 6/6          & 3/7      
 \label{table:constantes}
 \end{table}
 
-\par Peu importe les constantes, les spécifications de \textit{Whitebox} sont toujours respectées car elles sont définies dans le problème SMT. Par contre, les spécifications de  \textit{Blackbox} ne sont pas toujours respectées cat la ligne synthétisée n'est pas assez générique. La présence certaines constantes tel que 0 peut mener le solver vers une solution triviale, comme pour \textit{Smallest} où toutes les sorties $O$ de \textit{Whitebox} sont égales à 0.
+\par Peu importe les constantes, les spécifications de \textit{Whitebox} sont toujours respectées car elles sont définies dans le problème SMT. Par contre, les spécifications de  \textit{Blackbox} ne sont pas toujours respectées cat la ligne synthétisée n'est pas assez générique. La présence certaines constantes tel que 0 peut mener le solver vers une solution triviale, comme pour \textit{Smallest} où toutes les sorties $O$ de \textit{Whitebox} sont égales à 0. La figure \ref{fig:exemple_synth} représente une ligne synthétisée par OLS-Repair.
 
 \newpage
 En généralisant sur l'ensemble du dataset IntroclassJava original, OLS-Repair peut réparer les 48 versions défaillantes de \textit{median} ainsi que les 45 versions défaillantes de \textit{smallest} car les tests sont identiques pour chaque versions. Seulement, uniquement les spécifications \textit{Whitebox} sont respectées. Comme expliqué en \ref{table:constantes}, il est possible que la ligne synthétisée respecte certaines spécifications \textit{Blackbox}, cependant elles sont ne sont jamais respectées dans l'intégralité. Toutefois, si l'on regarde uniquement les spécifications prisent en compte, OLS-Repair répare 100\% des projets considérés.
 
-
+\begin{figure}
+\begin{lstlisting}
+public int median(int[] param) {
+    return (param[2] < param[0] + param[1])?(param[2]):(param[1]);
+}
+\end{lstlisting}
+\caption{Ligne synthétisée par rapport aux tests \textit{Whitebox} de \textit{median} avec comme constantes [-1 ; 0 ; 1]}
+\label{fig:exemple_synth}
+\end{figure}
 
 
 
